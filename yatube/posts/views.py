@@ -64,7 +64,7 @@ def post_detail(request, post_id):
         return redirect('add_comment', post_id=post_id)
     count = Post.objects.filter(author=post.author).count()
     comments = Comment.objects.filter(post_id=post_id)
-    form = PostForm()
+    form = CommentForm()
     context = {
         'comments': comments,
         'form': form,
@@ -145,8 +145,10 @@ def follow_index(request):
 def profile_follow(request, username):
     author = User.objects.get(username=username)
     user = request.user
+    if Follow.objects.filter(user=user, author=author).exists():
+        return redirect('posts:profile', username=username)
     if author != user:
-        Follow.objects.create(user=request.user, author=author)
+        Follow.objects.create(user=user, author=author)
         return redirect(
             'posts:profile',
             username=username
@@ -156,5 +158,8 @@ def profile_follow(request, username):
 
 @login_required
 def profile_unfollow(request, username):
-    Follow.objects.get(user=request.user, author__username=username).delete()
+    author = User.objects.get(username=username)
+    user = request.user
+    if Follow.objects.filter(user=user, author=author).exists():
+        Follow.objects.get(user=user, author__username=username).delete()
     return redirect('posts:profile', username=username)

@@ -44,13 +44,6 @@
   </li>
   <li class="nav-item"> 
     <a class="nav-link link-light
-    {% if request.resolver_match.view_name  == 'about:tech' %}
-      active
-    {% endif %}" 
-    href="{% url 'about:tech' %}">Изменить пароль</a>
-  </li>
-  <li class="nav-item"> 
-    <a class="nav-link link-light
     {% if request.resolver_match.view_name  == 'users:logout' %}
       active
     {% endif %}" 
