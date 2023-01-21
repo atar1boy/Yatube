@@ -84,7 +84,7 @@ class Comment(models.Model):
     )
 
     def __str__(self):
-        return f'Комментарий {self.author}'
+        return self.text[:15]
 
 
 class Follow(models.Model):
@@ -99,5 +99,8 @@ class Follow(models.Model):
         related_name='following',
     )
 
+    class Meta:
+        unique_together = ('user', 'author',)
+
     def __str__(self):
-        return f'Пользователь {self.user} подписан на {self.author}'
+        return 'followers'

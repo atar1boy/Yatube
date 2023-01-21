@@ -37,12 +37,11 @@ class PostModelTest(TestCase):
         expected_result = group.title
         self.assertEqual(expected_result, str(group))
         comment = PostModelTest.comment
-        expected_result = f'Комментарий {comment.author}'
+        expected_result = comment.text[:15]
         self.assertEqual(expected_result, str(comment))
         follow = PostModelTest.follow
-        expected_result = (
-            f'Пользователь {follow.user} подписан на {follow.author}'
-        )
+        expected_result = ('followers')
+        self.assertEqual(expected_result, str(follow))
 
     def test_models_have_correct_verbose_names(self):
         """verbose_name в полях совпадает с ожидаемым."""
