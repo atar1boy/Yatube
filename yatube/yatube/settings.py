@@ -7,12 +7,7 @@ SECRET_KEY = 'v%3c0!3l=3!!8*xm*w#ju2w9qc%e*8gj6+_b%*k4#1_5_@nzr8'
 
 DEBUG = True
 
-ALLOWED_HOSTS = [
-    'localhost',
-    '127.0.0.1',
-    '[::1]',
-    'testserver',
-]
+ALLOWED_HOSTS = ['51.250.74.245', '127.0.0.1', 'localhost']
 
 POST_AMOUNT = 10
 
